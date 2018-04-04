@@ -174,6 +174,9 @@ class LineProfiler(CLineProfiler):
                     if isfunction(v):
                         self.add_function(v)
                         nfuncsadded += 1
+                    if isinstance(v, staticmethod):
+                        self.add_function(v.__func__)
+                        nfuncsadded += 1
             elif isfunction(item):
                 self.add_function(item)
                 nfuncsadded += 1
